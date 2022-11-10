@@ -24,7 +24,7 @@ function Navbar() {
         </NavMenu>
         <ThemeProvider theme={theme === "light"? lightTheme : darkTheme}>
     <Navbars>
-        <i onclick={()=> themeToggler()}>
+        <i onClick={()=> themeToggler()}>
             <GlobalStyles/>
             <IconButton>
                 <DarkModeIcon fontSize="large"/>
