@@ -1,9 +1,18 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react'
+import styled, { ThemeProvider } from 'styled-components'
 import IconButton from '@mui/material/IconButton';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import {lightTheme, darkTheme, GlobalStyles} from "./Theme";
+
+const StyledApp = styled.div`
+color:${(props)=> props.theme.fontColor};
+`;
 
 function Navbar() {
+    const [theme, setTheme]= useState("light");
+    const themeToggler=()=>{
+        theme=== "light"? setTheme("dark"):setTheme("light");
+    };
   return (
    <Container>
     <Content>
@@ -13,9 +22,10 @@ function Navbar() {
         <a>Books</a>
         <a>About</a>
         </NavMenu>
-        
+        <ThemeProvider theme={theme === "light"? lightTheme : darkTheme}>
     <Navbars>
-        <i onclick="darkMode()">
+        <i onclick={()=> themeToggler()}>
+            <GlobalStyles/>
             <IconButton>
                 <DarkModeIcon fontSize="large"/>
             </IconButton>
@@ -24,6 +34,7 @@ function Navbar() {
         <a>Login</a>
         <Button>Sigh Up</Button>
     </Navbars>
+    </ThemeProvider>
     </Content>
    </Container>
   )
